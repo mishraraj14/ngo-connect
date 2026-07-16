@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Contact Us</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/contact.css}">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <div class="card shadow-lg border-0">
+
+            <div class="card-body p-5">
+
+                <h2 class="text-center text-primary mb-4">
+                    <i class="fa-solid fa-envelope"></i>
+                    Contact Us
+                </h2>
+
+                <form th:action="@{/saveContact}" th:object="${contact}" method="post">
+
+                    <input type="hidden" th:field="*{id}">
+
+                    <div class="mb-3">
+                        <label>Name</label>
+                        <input type="text" class="form-control" th:field="*{name}" required minlength="3"
+                            maxlength="50">
+
+                        <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" th:field="*{email}" required>
+
+                        <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Subject</label>
+                        <input type="text" class="form-control" th:field="*{subject}" required minlength="3"
+                            maxlength="100">
+
+                        <div class="text-danger" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Message</label>
+                        <textarea class="form-control" rows="5" th:field="*{message}" required
+                            minlength="10"></textarea>
+
+                        <div class="text-danger" th:if="${#fields.hasErrors('message')}" th:errors="*{message}">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary w-100" type="submit">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Send Message
+                    </button>
+
+                </form>
+
+                <div class="text-center mt-3">
+
+                    <a href="/contacts" class="btn btn-success">
+                        View Messages
+                    </a>
+
+                    <a href="/" class="btn btn-secondary">
+                        Home
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div th:replace="footer :: footer"></div>
+</body>
+
+</html>

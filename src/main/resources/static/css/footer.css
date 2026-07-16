@@ -1,0 +1,14 @@
+footer {
+    color: white !important;
+}
+
+footer h5,
+footer p,
+footer a,
+footer li {
+    color: white !important;
+}
+
+footer a:hover {
+    color: #0dcaf0 !important;
+}

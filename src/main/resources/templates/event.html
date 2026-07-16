@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Event Form</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/event.css}">
+
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <div class="card shadow-lg border-0">
+
+            <div class="card-body p-5">
+
+                <h2 class="text-center text-primary mb-4" th:text="${event.id == null} ? 'Add Event' : 'Update Event'">
+                </h2>
+
+                <form th:action="@{/saveEvent}" th:object="${event}" method="post">
+
+                    <input type="hidden" th:field="*{id}">
+
+                    <div class="mb-3">
+                        <label>Event Name</label>
+                        <input type="text" class="form-control" th:field="*{eventName}" required minlength="3"
+                            maxlength="100">
+
+                        <div class="text-danger" th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Event Date</label>
+                        <input type="date" class="form-control" th:field="*{eventDate}" required>
+
+                        <div class="text-danger" th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Location</label>
+                        <input type="text" class="form-control" th:field="*{location}" required minlength="3"
+                            maxlength="100">
+
+                        <div class="text-danger" th:if="${#fields.hasErrors('location')}" th:errors="*{location}">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Description</label>
+                        <textarea class="form-control" rows="4" th:field="*{description}" required
+                            minlength="10"></textarea>
+
+                        <div class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary w-100" type="submit"
+                        th:text="${event.id == null} ? 'Save Event' : 'Update Event'">
+                    </button>
+
+                </form>
+
+                <div class="text-center mt-3">
+
+                    <a href="/events" class="btn btn-success">
+                        View Events
+                    </a>
+
+                    <a href="/dashboard" class="btn btn-dark">
+                        Dashboard
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div th:replace="footer :: footer"></div>
+</body>
+
+</html>

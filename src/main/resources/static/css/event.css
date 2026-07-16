@@ -1,0 +1,21 @@
+body{
+    background:#f4f7fb;
+}
+
+.card{
+    border-radius:20px;
+}
+
+.form-control{
+    border-radius:10px;
+}
+
+.btn{
+    border-radius:10px;
+    font-weight:bold;
+}
+
+h2{
+    font-weight:bold;
+}
+
